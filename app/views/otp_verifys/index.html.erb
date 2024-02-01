@@ -1,0 +1,12 @@
+
+  <div class="otp-form">
+    <%= form_with(url: otp_verifys_path, method: :post) do |form| %>
+      <label for="otp">Enter OTP:</label>
+      <%= form.text_field :otp, id: "otp", placeholder: "Enter your OTP" %>
+      <h2 id="countdown"></h2>
+      <%= form.submit 'Submit OTP' %>
+    <% end %>
+    
+  </div>
+
+<%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
