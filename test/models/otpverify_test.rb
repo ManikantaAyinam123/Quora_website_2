@@ -1,6 +1,6 @@
 require "test_helper"
 
-class WayControllerTest < ActionDispatch::IntegrationTest
+class OtpverifyTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

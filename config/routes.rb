@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
+  get 'homy/index'
  
   
   
   devise_for :users, controllers: {omniauth_callbacks: 'omniauth' , registrations: 'registrations'}
+
  
- 
+  root 'homy#index'
+
   resources :otp_verifys, only: [:index, :create]
   resources :home, only: [:index]
+
+  # get'/homeotp_verifys_path/index',to:'home#index',as:'home_index'
+  # resources :otp_verifys
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

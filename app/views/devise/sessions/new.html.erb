@@ -44,19 +44,24 @@
   </style>
 </head>
 <body>
+<!-- heading content -->
   <div class="container">
  <div class="text-center">
  <img src="https://qph.cf2.quoracdn.net/main-qimg-dc1b777005095235798e5dbdb6b710dd" alt="Quora Logo"width="215" height="100">
  <p class="fw-bold"> A place to share knowledge and better understand the world </p>
  </div>
+ <!-- heading content end -->
+
+ <!-- Leftside content -->
     <div class="row">
       <div class="col-md-6 omniauth-container  border-end">
       <p> By continuing you indicate that you agree to Quora’s
       <a href="#" style="text-decoration: none; color: blue;">Terms of Service</a>and
      <a href="#" style="text-decoration: none; color: blue;">Privacy Policy</a>.
        </p>
-        <%- if devise_mapping.omniauthable? %>
-          <!-- Your OmniAuth buttons go here -->
+       <!-- Leftside content start -->
+       <%- if devise_mapping.omniauthable? %>
+          
           <% resource_class.omniauth_providers.each do |provider| %>
             <% if provider == :github %>
             <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-github border gb", data: { turbo: false } do %>
@@ -64,23 +69,22 @@
               Sign in with GitHub
             <% end %><br />
             <% elsif provider == :google_oauth2 %>
-  <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-google border gb", data: { turbo: false } do %>
-    <%= image_tag("google.png",style: "width: 20px; height: auto; margin-right: 10px;") %>
-    Sign in with Google
-  <% end %><br />
-           
+            <%= button_to omniauth_authorize_path(resource_name, provider), class: "btn btn-google border gb", data: { turbo: false } do %>
+            <%= image_tag("google.png",style: "width: 20px; height: auto; margin-right: 10px;") %>
+              Sign in with Google
+            <% end %><br />
+
           <div class="text-center mt-3">
           <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
           <%= link_to "Sign up with email", new_registration_path(resource_name), class: "text-decoration-none", style: "color: black;" %><br />
-
-<% end %>
+          <% end %>
           </div>
           <% end %>
           <% end %>
-          <% end %>
-         
+       <% end %>
       </div>
-
+      <!-- Leftside content end -->
+      <!-- Rightside content start-->
       <div class="col-md-6  form-container">
         <p class="fw-bold">Log in</p>
         <hr>
