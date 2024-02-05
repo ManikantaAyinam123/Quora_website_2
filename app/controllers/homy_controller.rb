@@ -3,7 +3,7 @@ class HomyController < ApplicationController
   def index
     if user_signed_in? && current_user.email_verified === true 
      
-      redirect_to home_path
+      redirect_to home_index_path
   
     else
      
