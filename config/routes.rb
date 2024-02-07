@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :otp_verifys, only: [:index, :create]
   resources :home, only: [:index]
+ resources :posts
+ resources :likes
 
   # get'/homeotp_verifys_path/index',to:'home#index',as:'home_index'
   # resources :otp_verifys
