@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :home, only: [:index]
  resources :posts
  resources :likes
-
+ resources :postcomments
   # get'/homeotp_verifys_path/index',to:'home#index',as:'home_index'
   # resources :otp_verifys
 

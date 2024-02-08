@@ -156,19 +156,45 @@
                     </div>
                </div>
              </div>
-             <div class="border mt-2 shadow">
-             <% @posts.each do |post| %>
-              <p> <b><%= post.title %></b></p>
-              <p><%= post.content %></p>
-              <%= image_tag post.image, style:"width: 20%;" if  post.image.attached?%>
-              <% if post.likes.exists?(user: current_user) %>
-              <%= link_to 'Unlike', post_likes_path(post), method: :post, class: 'btn btn-unlike' %>
-            <% else %>
-              <%= link_to 'Like', post_likes_path(post), method: :post, class: 'btn btn-like' %>
-            <% end %>
-              <hr>
-           <% end %>
+             <div class="container p-1">
+                <div class="border mt-2 shadow">
+                    <% @posts.each do |post| %>
+                      <p> <b><%= post.title %></b></p>
+                      <p><%= post.content %></p>
+                      <%= image_tag post.image, style:"width: 20%;" if  post.image.attached?%>
+                      <% if post.likes.exists?(user: current_user) %>
+                          <%= link_to 'Unlike', likes_path(post_id: post.id), method: :post, class: 'btn btn-success btn-unlike' %>
+                      <% else %>
+                          <%= link_to 'Like', likes_path(post_id: post.id), method: :post, class: 'btn btn-danger btn-like' %>
+                      <% end %>
+                    
+
+
+
+                      <%= form_with(model: [post, Postcomment.new], url: postcomments_path(post_id: post.id), local: true) do |form| %>
+                        <%= form.label :content %><br>
+                        <%= form.text_area :content %>
+                        <%= form.submit "Add Comment", class: 'btn btn-primary' %>
+                      <% end %>
+                        
+                        
+                      
+                      <% post.postcomments.each do |comment| %>
+                        <p><strong>Content:</strong><%= comment.content %></p>
+                        <p><strong>No of Likes:</strong> <%= comment.likes.count %></p>
+                        <% if comment.likes.exists?(user: current_user) %>
+                          <%= link_to 'Unlike', likes_path(comment_id: comment.id), method: :post, class: 'btn btn-like liked' %>
+                          <% else %>
+                          <%= link_to 'Like', likes_path(comment_id: comment.id), method: :post, class: 'btn btn-unlike unliked' %>
+                        <% end %>
+                      <% end %>
+                    
+                      <hr>
+                    <% end %>
+                    
+                  </div>
              </div>
+            
         </div>
     </div>
    
