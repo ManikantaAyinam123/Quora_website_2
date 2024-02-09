@@ -1,0 +1,13 @@
+<% @posts.each do |post| %>
+   <p><b>Content: </b><%= post.content %></p>
+
+<% if post.likes.exists?(user: current_user) %>
+<%= link_to 'Unlike', post_likes_path(post), method: :post, class: 'btn btn-unlike' %>
+<% else %>
+<%= link_to 'Like', post_likes_path(post), method: :post, class: 'btn btn-like' %>
+<% end %>
+
+<% if post.user == current_user %>
+<%= link_to "Delete", post_path(post), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'btn btn-delete' %>
+<% end %>
+<% end %>

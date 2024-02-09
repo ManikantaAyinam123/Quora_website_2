@@ -4,7 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
       super do |resource|
         if resource.persisted?
           UserMailer.welcome_email(resource).deliver_later unless resource.invalid?
-          redirect_to otp_verifys_path and return
+         
         end
       end
     end

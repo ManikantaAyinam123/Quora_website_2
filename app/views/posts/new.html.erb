@@ -1,0 +1,19 @@
+<%= form_with(model: @post, url: posts_path, method: :post, local: true, html: { multipart: true }) do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :content %><br>
+    <%= form.text_area :content %>
+  </p>
+  <p>
+  <%= form.label :image %><br>
+  <%= form.file_field :image %>
+</p>
+  <p>
+    <%= form.submit "Create Post" %>
+  </p>
+  <%= link_to 'Back to Posts', posts_path, class: 'btn btn-primary' %>
+<% end %>
+</form>
