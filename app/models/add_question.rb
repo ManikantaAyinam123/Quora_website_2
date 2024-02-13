@@ -1,0 +1,2 @@
+class AddQuestion < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PublicPostsController < ApplicationController
+end
