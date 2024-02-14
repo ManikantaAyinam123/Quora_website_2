@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:github, :google_oauth2]
          has_many :post
          has_many :postcomment
+         has_many :question
          def self.create_from_provider_data(provider_data)
           where(provider: provider_data.provider, uid: provider_data.uid).first_or_create  do |user|
             user.email = provider_data.info.email

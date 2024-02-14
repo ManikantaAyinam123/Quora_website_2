@@ -12,6 +12,8 @@
 </style>
 </head>
 <body>
+
+
 <div class="container shadow">
     <div class="row justify-content-center my-5 ">
         <div class="col-auto">
@@ -43,10 +45,19 @@
         </div>
 
         <div id="addQuestionContent" class="hidden col-lg-6 text-center">
-            <h2>Add Question</h2>
-            <form>
-                <!-- Your add question form elements here -->
-            </form>
+                            <h2>Add Question</h2>
+            <form action="/questions" method="post">
+                <label for="content">Question Content:</label><br>
+                <input type="text" id="content" name="question[content]"><br>
+
+                <label for="question_type">Question Type:</label><br>
+                <select id="question_type" name="question[questiontype]">
+                    <option value="public">Public</option>
+                    <option value="private">Private</option>
+                </select><br>
+
+                <input type="submit" value="Create Question">
+             </form>
         </div>
     </div>
 </div>
