@@ -68,7 +68,7 @@
     background-color:#FFFFFF
    }
    .nav-link.active {
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #B92B27;
 }
   
     .sticky-component {
@@ -83,10 +83,10 @@
   <div class="fixed-top">
     <ul class="nav justify-content-center shadow    ">
       <li class="nav-item">
-        <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Qura</a>
+        <a class="navbar-brand nav-link  fw-bolder fs-2" id="brandname" href="#">Quora</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<%= home_path %>"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
+        <a class="nav-link active" href="#"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("list.png") %>' ></a>

@@ -75,6 +75,17 @@
       top: 50px;
       overflow-y: auto; 
     }
+    .image-placeholder-input {
+      background-image: url('<%= asset_path("edit.png") %>'); 
+      background-size: 20px; 
+      background-repeat: no-repeat; 
+      background-position: 5px center;
+      padding-left: 35px; 
+      height: 35px; 
+      width: 115px; 
+      border-radius: 15px; 
+      
+    }
    
   </style>
 </head>
@@ -133,10 +144,35 @@
         </ul>
       </div>
         <% end %>
-show pghage
-<div class="d-flex justify-content-center mt-5 ">
-<%= @question.content %>
+<div class="container mt-5">
+    <div class="row mt-5 ">
+      <div class="col-12 col-md-6 shadow mt-3 ml-5 border">
+      <b><%= @question.content %></b>
+      <div class="d-flex  mt-2 mb-2">
+      <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search">
+      <img class="mt-1 "src='<%= asset_path("wifi.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-right: 10px;">
+      <span class="mt-1 "> Follow · 5</span>
+      <img class="mt-1 "src='<%= asset_path("pass_edit.png")%>' style="height:20px;width:20px;margin-left: 40px;margin-right: 10px;">
+      <span class="mt-1 "> pass</span>
+      <img class="mt-1 "src='<%= asset_path("exclamation.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-left:150px;">
+      <img class="mt-1 "src='<%= asset_path("chat-bubble.png")%>' style="height:20px;width:20px;margin-left: 30px;">
+      <img class="mt-1 "src='<%= asset_path("downarrow.png")%>' style="height:20px;width:20px;margin-left: 20px; margin-right:10px;">
+      <span style="font-size: 20px;"><b>...</b></span>
+    
+    </div>
+    <div class="p-5 border d-flex align-items-center justify-content-center flex-column">
+       <img src='<%= asset_path("man.png") %>' style="width:30px;height:30px;">
+       <h5 class="mt-2">Mani, can you answer this question?</h5>
+       <small class="mb-3">People are searching for a better answer to this question.</small>
+       <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search" style="color:red;">
+    </div>
+      </div>
+      <div class="col-12 col-md-3 shadow mt-3 border">
+      Questions
+      </div>
+    </div>
 </div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
