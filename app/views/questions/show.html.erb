@@ -79,14 +79,40 @@
       background-image: url('<%= asset_path("edit.png") %>'); 
       background-size: 20px; 
       background-repeat: no-repeat; 
-      background-position: 5px center;
+      background-position: 10px center;
       padding-left: 35px; 
       height: 35px; 
       width: 115px; 
       border-radius: 15px; 
       
+      
     }
-   
+    .image-placeholder {
+      background-image: url('<%= asset_path("edit2.png") %>'); 
+      background-size: 20px; 
+      background-repeat: no-repeat; 
+      background-position: 10px center;
+      padding-left: 35px; 
+      height: 35px; 
+      width: 115px; 
+      border-radius: 15px;
+      border-color:#2E31D5;
+      
+      
+    }
+  
+    .image-placeholder::placeholder {
+      color:#2E31D5;
+    }
+    .Questions-content{
+      margin-right:20px;
+      margin-left:50px;
+    }
+    .Questions-section{
+      padding: 0px 10px 5px 10px;
+      font-size:17px;
+      margin: 5px 20px 10px 10px;
+    }
   </style>
 </head>
 <body>
@@ -99,13 +125,13 @@
     <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Quora</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
+    <a class="nav-link" href="<%= home_index_path %>"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("list.png") %>' ></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("edit.png") %>' ></a>
+    <a class="nav-link" href="<%= questions_path %>"><img class="nav-icon" src='<%= asset_path("edit.png") %>' ></a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("group.png") %>' ></a>
@@ -146,31 +172,41 @@
         <% end %>
 <div class="container mt-5">
     <div class="row mt-5 ">
-      <div class="col-12 col-md-6 shadow mt-3 ml-5 border">
-      <b><%= @question.content %></b>
-      <div class="d-flex  mt-2 mb-2">
-      <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search">
-      <img class="mt-1 "src='<%= asset_path("wifi.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-right: 10px;">
-      <span class="mt-1 "> Follow · 5</span>
-      <img class="mt-1 "src='<%= asset_path("pass_edit.png")%>' style="height:20px;width:20px;margin-left: 40px;margin-right: 10px;">
-      <span class="mt-1 "> pass</span>
-      <img class="mt-1 "src='<%= asset_path("exclamation.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-left:150px;">
-      <img class="mt-1 "src='<%= asset_path("chat-bubble.png")%>' style="height:20px;width:20px;margin-left: 30px;">
-      <img class="mt-1 "src='<%= asset_path("downarrow.png")%>' style="height:20px;width:20px;margin-left: 20px; margin-right:10px;">
-      <span style="font-size: 20px;"><b>...</b></span>
-    
-    </div>
-    <div class="p-5 border d-flex align-items-center justify-content-center flex-column">
-       <img src='<%= asset_path("man.png") %>' style="width:30px;height:30px;">
-       <h5 class="mt-2">Mani, can you answer this question?</h5>
-       <small class="mb-3">People are searching for a better answer to this question.</small>
-       <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search" style="color:red;">
-    </div>
+      <div class="col-12 col-md-6 shadow mt-3 border p-4 Questions-content">
+            <h5><b><%= @question.content %></b></h5>
+            <div class="d-flex  mt-3 mb-2">
+                <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search">
+                <img class="mt-1 "src='<%= asset_path("wifi.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-right: 10px;">
+                <span class="mt-1 "> Follow · 5</span>
+                <img class="mt-1 "src='<%= asset_path("pass_edit.png")%>' style="height:20px;width:20px;margin-left: 40px;margin-right: 10px;">
+                <span class="mt-1 "> pass</span>
+                <img class="mt-1 "src='<%= asset_path("exclamation.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-left:130px;">
+                <img class="mt-1 "src='<%= asset_path("chat-bubble.png")%>' style="height:20px;width:20px;margin-left: 30px;">
+                <img class="mt-1 "src='<%= asset_path("downarrow.png")%>' style="height:20px;width:20px;margin-left: 20px; margin-right:10px;">
+                <span style="font-size: 20px;"><b>...</b></span>
+            </div>
+            <div class="p-5 d-flex align-items-center justify-content-center flex-column">
+              <img src='<%= asset_path("man.png") %>' style="width:30px;height:30px;">
+              <h5 class="mt-2">Mani, can you answer this question?</h5>
+              <small class="mb-3">People are searching for a better answer to this question.</small>
+              <input class="form-control image-placeholder" id="text" type="search" placeholder="Answer" aria-label="Search" >
+            </div>
       </div>
-      <div class="col-12 col-md-3 shadow mt-3 border">
-      Questions
+      <div class="col-12 col-md-3 shadow mt-3 border m-0 p-0 ">
+         <p class=" mb-0 border-bottom p-2 " style="font-weight:600">Related questions</p>
+         <div class="Questions-section flex-column d-flex  ">
+            <a href="#" class="text-decoration-none mb-2"> What is health condition and its benfits?</a>
+            <a href="#" class="text-decoration-none mb-2"> What is the purpose of studying health education?</a>
+            <a href="#" class="text-decoration-none mb-2"> is education part of health?</a>
+            <a href="#" class="text-decoration-none mb-2"> What's your opinion on importance of education?</a>
+            <a href="#" class="text-decoration-none mb-2"> What is the place and importance of health education in PHC?</a>
+            <a href="#" class="text-decoration-none mb-2"> What  role does school education play in a child's health?</a>
+
+         </div>
+
+
       </div>
-    </div>
+  </div>
 </div>
 
 

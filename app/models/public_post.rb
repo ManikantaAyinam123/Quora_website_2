@@ -1,2 +1,0 @@
-class PublicPost < ApplicationRecord
-end

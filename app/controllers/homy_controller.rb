@@ -1,7 +1,7 @@
 class HomyController < ApplicationController
   before_action :authenticate_user!
   def index
-    if user_signed_in?
+    if user_signed_in? && current_user.uid.present?
    
       redirect_to home_index_path
   

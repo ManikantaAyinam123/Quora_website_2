@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +40,7 @@
       border:1px solid black:
     }
     .shadow {
-  box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.5); /* Change the values as needed */
+  box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.5);
 }
     .questions-list{
       padding:5px 0px 0px 15px;
@@ -176,10 +174,10 @@
               <span class="ml-5 p-1">Question for you</span>
           </div>
           <div class="d-flex flex-column border border-bottom ml-0">
-          <% @questions.each do |question| %>
-            <div class="border border-bottom questions-list d-flex flex-column">
-              <%= link_to question.content, question_path(question.id) %>
-              <small class="mt-2">No answer yet · Last followed 35m</small>
+          <% @questions.reverse_each do |question| %>
+            <div class="border border-bottom questions-list d-flex flex-column text-decoration-none">
+              <%= link_to question.content, question_path(question.id), class: "text-decoration-none" %>
+              <small class="mt-1 mb-2">No answer yet · Last followed 35m</small>
               
               <div class="d-flex  mt-2 mb-2">
                 <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search">

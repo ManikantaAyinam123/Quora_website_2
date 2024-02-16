@@ -17,7 +17,7 @@
 <div class="container shadow">
     <div class="row justify-content-center my-5 ">
         <div class="col-auto">
-            <button class="btn btn-primary mx-2" onclick="toggleSection('createPost')">Create Post</button>
+            <button class="btn btn-primary mx-2" onclick="toggleSection('createPost')">Crete Post</button>
             <button class="btn btn-primary mx-2" onclick="toggleSection('addQuestion')">Add Question</button>
         </div>
     </div>
@@ -46,18 +46,23 @@
 
         <div id="addQuestionContent" class="hidden col-lg-6 text-center">
                             <h2>Add Question</h2>
-            <form action="/questions" method="post">
-                <label for="content">Question Content:</label><br>
-                <input type="text" id="content" name="question[content]"><br>
-
-                <label for="question_type">Question Type:</label><br>
-                <select id="question_type" name="question[questiontype]">
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                </select><br>
-
-                <input type="submit" value="Create Question">
-             </form>
+            <form action="/questions" method="post" class="mt-4">
+            <div class="mb-3">
+              <label for="content" class="form-label">Question Content:</label>
+              <input type="text" class="form-control" id="content" name="question[content]" required>
+            </div>
+          
+            <div class="mb-3">
+              <label for="question_type" class="form-label">Question Type:</label>
+              <select class="form-select" id="question_type" name="question[questiontype]" required>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+              </select>
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Create Question</button>
+          </form>
+          
         </div>
     </div>
 </div>

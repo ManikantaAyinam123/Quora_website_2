@@ -106,8 +106,13 @@
       <form class="d-flex" role="search">
         <input class="form-control mt-2" id="text" type="search" placeholder="try Quora +" aria-label="Search" style="height:35px;width:120px; border-radius: 15px;">
       </form>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("man.png") %>' ></a>
+      <li>
+        <div class="dropdown">
+            <a class="nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false"><img class="nav-icon" src='<%= asset_path("man.png") %>' ></a>
+            <ul class="dropdown-menu">
+              <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete },class: "dropdown-item" %>
+            </ul>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("internet.png") %>' ></a>
@@ -172,7 +177,7 @@
         </div>     
       </div> 
       <div class="col-12 col-md-6">
-        <div class=" shadow p-2  ">
+        <div class=" shadow p-2 mt-3 border ">
              
             <div class="d-flex">
               <img src='<%= asset_path("man.png") %>' style="width:30px;height: 30px;margin-right:5px;">
@@ -191,8 +196,8 @@
           </div>
         </div>
      
-          <% @posts.each do |post| %>
-         <div class="mb-0 shadow  mt-2">
+          <% @posts.reverse_each do |post| %>
+         <div class="mb-0 border shadow mt-2">
             <div class="p-2">      
               <div class="d-flex">
               <div class="">
@@ -213,11 +218,11 @@
                
                 <%= image_tag post.image, style:"width:632px;margin-left:0px;" if  post.image.attached?%>
                 <button class="btn-like rounded-end-button border-0 m-3">
-                  <%= link_to likes_path(post_id: post.id), method: :post, class: 'btn-like m-0' do %>
+                  <%= link_to new_like_path(post_id: post.id), method: :post, class: 'btn-like m-0' do %>
                     <%= image_tag asset_path("up-arrow (3).png"), style: "height: 20px; width: 20px;" %>
                   <% end %>
                   upvote-<%= post.likes.count %>
-                  <%= link_to likes_path(post_id: post.id, value: "unlike"), method: :post, class: ' border-start btn-dislike m-0' do %>
+                  <%= link_to new_like_path(post_id: post.id, value: "unlike"), method: :post, class: ' border-start btn-dislike m-0' do %>
                     <%= image_tag asset_path("down_arrow_red.png"), style: "height: 20px; width: 20px;" %>
                   <% end %>
                 </button>
@@ -228,6 +233,9 @@
                 <% end %>
                 <%= post.postcomments.count %>
                 <img src='<%= asset_path("sync.png") %>' style="height:20px;width:20px;margin-left:15px; margin-right:5px; cursor: pointer;">2
+               
+
+               
           </div>
                 <div id="form<%= post.id %>" style="display:none;">
                   <%= form_with(model: [post, Postcomment.new], url: postcomments_path(post_id: post.id), local: true) do |form| %>
@@ -265,11 +273,11 @@
                           
                           <% like=comment.likes.find_by(user: current_user) %>
                           <button class="btn-like rounded-end-button border-0 m-3 ">
-                          <%= link_to likes_path(comment_id: comment.id), method: :post, class: 'btn-like m-0' do %>
+                          <%= link_to new_like_path(comment_id: comment.id), method: :post, class: 'btn-like m-0' do %>
                             <%= image_tag asset_path("up-arrow (3).png"), style: "height: 20px; width: 20px;" %>
                           <% end %>
                           <%= comment.likes.count %>
-                          <%= link_to likes_path(comment_id: comment.id, value:"unlike"), method: :post, class: ' border-start btn-dislike m-0' do %>
+                          <%= link_to new_like_path(comment_id: comment.id, value:"unlike"), method: :post, class: ' border-start btn-dislike m-0' do %>
                             <%= image_tag asset_path("down_arrow_red.png"), style: "height: 20px; width: 20px;" %>
                           <% end %>
                           
@@ -283,7 +291,7 @@
            
           <% end %>
           <div style="height: 50px;"></div>
-          <li><%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %></li>
+
         </div>
       </div>
     </div>
