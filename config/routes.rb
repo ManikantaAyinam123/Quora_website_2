@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get 'homy/index'
  
   
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
  resources :posts
  resources :likes
  resources :postcomments
+ resources :questions
   # get'/homeotp_verifys_path/index',to:'home#index',as:'home_index'
   # resources :otp_verifys
 

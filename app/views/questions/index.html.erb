@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Your Title</title>
+</head>
+<body>
+ <style>
+    .nav-icon {
+      width: 28px;
+      height: 28px;
+    }
+    .side-bar {
+      color: #B92B27;
+      font-size: 13px;
+      padding: 1px 16px;
+      background-color: #B92B271A;
+ 
+    }
+    .col-auto p{
+      padding: 1px 16px;
+      font-size: 13px;
+    }
+    .addquestion {
+      background-color: #B92B27; 
+    }
+    #brandname {
+      color: #B92B27;
+      font-family: -apple-system; 
+    }
+    .nav-icon.active {
+      background-color: #B92B27;
+    }
+    .star-icon{
+      padding:5px;
+      background-color: #B92B27; 
+      border:1px solid black:
+    }
+    .shadow {
+  box-shadow: 10px 0px 10px 0px rgba(0, 0, 0, 0.5);
+}
+    .questions-list{
+      padding:5px 0px 0px 15px;
+    }
+    .sp-names {
+      width: 81px;
+      color: #63466;
+      margin-left: 5px;
+      font-size: 13px;
+    }
+    .footer {
+      width: 100px;
+      font-size: 13px;
+    }
+    #text {
+      font-family: -apple-system;
+    }
+    .rounded-end-button {
+      color: grey;
+      padding: 3px 9px 3px 9px;
+      text-align: center;
+      font-family: -apple-system;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      border-top-left-radius: 20px;
+      border-bottom-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin: 0;
+    }
+    .dislike {
+      margin: 0;
+      padding: 3px 9px 3px 9px;
+      text-align: center;
+      font-family: -apple-system;
+      text-decoration: none;
+      font-size: 13px;
+      cursor: pointer;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+   
+    .side-content{
+      height: 500px;
+    }
+   .nav{
+    height:50px;
+    background-color:#FFFFFF
+   }
+  
+    .sticky-component {
+      position: sticky;
+      top: 50px;
+      overflow-y: auto; 
+    }
+    .image-placeholder-input {
+      background-image: url('<%= asset_path("edit.png") %>'); 
+      background-size: 20px; 
+      background-repeat: no-repeat; 
+      background-position: 5px center;
+      padding-left: 35px; 
+      height: 35px; 
+      width: 115px; 
+      border-radius: 15px; 
+    }
+   
+  </style>
+</head>
+<body>
+
+
+
+<div class="fixed-top">
+<ul class="nav justify-content-center shadow    ">
+  <li class="nav-item">
+    <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Quora</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<%= home_index_path %>"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("list.png") %>' ></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("edit.png") %>' ></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("group.png") %>' ></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("active.png") %>' ></a>
+  </li>
+  <form class="d-flex" role="search">
+    <input class="form-control mt-2" type="search" placeholder="Search" aria-label="Search" style="height:35px;width:250px;">
+  </form>
+  <form class="d-flex" role="search">
+    <input class="form-control mt-2" id="text" type="search" placeholder="try Quora +" aria-label="Search" style="height:35px;width:120px; border-radius: 15px;">
+  </form>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("man.png") %>' ></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("internet.png") %>' ></a>
+  </li>
+  <%= link_to new_post_path, class: 'btn' do %>
+    <form class="d-flex" role="search">
+      <input class="form-control mt-0 addquestion" id="text" type="search" placeholder="Add Question" aria-label="Search" style="height:35px;width:150px; border-radius: 15px; color:yellow;">
+    </form>
+  <% end %>
+</ul>
+</div>
+
+<div class="container mt-5">
+  <div class="row mt-5">
+      <div class="col-12 col-md-3  side-content sticky-component ">
+        <div class=" flex-row d-flex justify-content-end">
+         <div class="col-auto mt-2 ">
+            <h5>Questions</h5>
+            <hr>
+            <p class="side-bar rounded-1">Question for you </p>
+            <p >Answer requests </p>
+            <p>Drafts</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6  mt-3 border shadow p-0 m-0">
+         
+          <div class="p-2 border border-bottom ml-0 m-0 p-0" >
+              <img class="star-icon rounded-1 " src='<%= asset_path("star (1).png") %>'style="height:25px;width:25px;">
+              <span class="ml-5 p-1">Question for you</span>
+          </div>
+          <div class="d-flex flex-column border border-bottom ml-0">
+          <% @questions.reverse_each do |question| %>
+            <div class="border border-bottom questions-list d-flex flex-column text-decoration-none">
+              <%= link_to question.content, question_path(question.id), class: "text-decoration-none" %>
+              <small class="mt-1 mb-2">No answer yet · Last followed 35m</small>
+              
+              <div class="d-flex  mt-2 mb-2">
+                <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search">
+                <img class="mt-1 "src='<%= asset_path("wifi.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-right: 10px;">
+                <span class="mt-1 "> Follow · 5</span>
+                <img class="mt-1 "src='<%= asset_path("pass_edit.png")%>' style="height:20px;width:20px;margin-left: 40px;margin-right: 10px;">
+                <span class="mt-1 "> pass</span>
+                <img class="mt-1 "src='<%= asset_path("downarrow.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-left:200px;margin-right:20px;">
+                <span style="font-size: 20px;"><b>...</b></span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
+
