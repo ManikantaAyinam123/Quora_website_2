@@ -84,8 +84,6 @@
       height: 35px; 
       width: 115px; 
       border-radius: 15px; 
-      
-      
     }
     .image-placeholder {
       background-image: url('<%= asset_path("edit2.png") %>'); 
@@ -97,8 +95,6 @@
       width: 115px; 
       border-radius: 15px;
       border-color:#2E31D5;
-      
-      
     }
   
     .image-placeholder::placeholder {
@@ -116,60 +112,62 @@
   </style>
 </head>
 <body>
-
-
 <% if user_signed_in? %>
+<!-- nav if user already signed in-->
 <div class="fixed-top">
-<ul class="nav justify-content-center shadow    ">
-  <li class="nav-item">
-    <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Quora</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="<%= home_index_path %>"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("list.png") %>' ></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="<%= questions_path %>"><img class="nav-icon" src='<%= asset_path("edit.png") %>' ></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("group.png") %>' ></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("active.png") %>' ></a>
-  </li>
-  <form class="d-flex" role="search">
-    <input class="form-control mt-2" type="search" placeholder="Search" aria-label="Search" style="height:35px;width:250px;">
-  </form>
-  <form class="d-flex" role="search">
-    <input class="form-control mt-2" id="text" type="search" placeholder="try Quora +" aria-label="Search" style="height:35px;width:120px; border-radius: 15px;">
-  </form>
-  <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("man.png") %>' ></a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("internet.png") %>' ></a>
-  </li>
-  <%= link_to new_post_path, class: 'btn' do %>
-    <form class="d-flex" role="search">
-      <input class="form-control mt-0 addquestion" id="text" type="search" placeholder="Add Question" aria-label="Search" style="height:35px;width:150px; border-radius: 15px; color:yellow;">
-    </form>
-  <% end %>
-</ul>
+        <ul class="nav justify-content-center shadow    ">
+          <li class="nav-item">
+            <a class="navbar-brand nav-link fw-bolder fs-2" id="brandname" href="#">Quora</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= home_index_path %>"><img class="nav-icon" src='<%= asset_path("home.png") %>' onclick="changeIconSrc(this)" ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("list.png") %>' ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= questions_path %>"><img class="nav-icon" src='<%= asset_path("edit.png") %>' ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("group.png") %>' ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("active.png") %>' ></a>
+          </li>
+          <form class="d-flex" role="search">
+            <input class="form-control mt-2" type="search" placeholder="Search" aria-label="Search" style="height:35px;width:250px;">
+          </form>
+          <form class="d-flex" role="search">
+            <input class="form-control mt-2" id="text" type="search" placeholder="try Quora +" aria-label="Search" style="height:35px;width:120px; border-radius: 15px;">
+          </form>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("man.png") %>' ></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><img class="nav-icon" src='<%= asset_path("internet.png") %>' ></a>
+          </li>
+          <%= link_to new_post_path, class: 'btn' do %>
+            <form class="d-flex" role="search">
+              <input class="form-control mt-0 addquestion" id="text" type="search" placeholder="Add Question" aria-label="Search" style="height:35px;width:150px; border-radius: 15px; color:yellow;">
+            </form>
+          <% end %>
+      </ul>
 </div>
-        <% else %>
+<!-- nav if user already not signed in-->
+  <% else %>
         <div class="fixed-top">
         <ul class="nav shadow">
           <li class="nav-item justify-content-start">
             <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Quora</a>
           </li>
           <li class="nav-item  ms-auto p-2 ">
-            <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-primary'%>
+            <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-danger'%>
           </li>
         </ul>
       </div>
-        <% end %>
+   <% end %>
+<!-- main content start-->
+
 <div class="container mt-5">
     <div class="row mt-5 ">
       <div class="col-12 col-md-6 shadow mt-3 border p-4 Questions-content">
@@ -201,16 +199,10 @@
             <a href="#" class="text-decoration-none mb-2"> What's your opinion on importance of education?</a>
             <a href="#" class="text-decoration-none mb-2"> What is the place and importance of health education in PHC?</a>
             <a href="#" class="text-decoration-none mb-2"> What  role does school education play in a child's health?</a>
-
-         </div>
-
-
-      </div>
+          </div>
+     </div>
   </div>
 </div>
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

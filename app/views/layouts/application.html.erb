@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>QuoraWebsite</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
+<head>
+<title>Quora</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+ 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+<%= javascript_importmap_tags %>
+<link href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" rel="stylesheet">
+ 
   </head>
-
-  <body>
-    <%= yield %>
-  </body>
+ 
+<body>
+<%= yield %>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+<% if notice.present? %>
+      Toastify({
+        text: "<%= notice %>",
+        duration: 3000, // 3 seconds
+        gravity: "top", // toast position
+        position: "right", // toast position
+        backgroundColor:  "#007bff",
+      }).showToast();
+<% end %>
+<% if alert.present? %>
+    Toastify({
+        text: "<%= alert %>",
+        duration: 3000, // 3 seconds
+        gravity: "top", // toast position
+        position: "right", // toast position
+        backgroundColor: "#007bff",
+      }).showToast();
+<% end %>
+</script>
+</body>
+ 
+ 
 </html>
