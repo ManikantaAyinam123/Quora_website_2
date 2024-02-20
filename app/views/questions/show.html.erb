@@ -154,18 +154,19 @@
       </ul>
 </div>
 <!-- nav if user already not signed in-->
-  <% else %>
-        <div class="fixed-top">
-        <ul class="nav shadow">
-          <li class="nav-item justify-content-start">
-            <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Quora</a>
-          </li>
-          <li class="nav-item  ms-auto p-2 ">
-            <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-danger'%>
-          </li>
-        </ul>
-      </div>
-   <% end %>
+<% else %>
+<div class="fixed-top">
+<ul class="nav d-flex justify-content-around shadow">
+  <li class="nav-item   ml-5">
+    <a class="navbar-brand nav-link active fw-bolder fs-2" id="brandname" href="#">Quora</a>
+  </li>
+  <li class="nav-item ms-5 mr-5 mt-1">
+    <%= link_to 'Sign in', new_user_session_path, class: 'btn btn-danger'%>
+  </li>
+</ul>
+</div>
+<% end %>
+
 <!-- main content start-->
 
 <div class="container mt-5">
@@ -180,7 +181,17 @@
                 <span class="mt-1 "> pass</span>
                 <img class="mt-1 "src='<%= asset_path("exclamation.png")%>' style="height:20px;width:20px;margin-left: 30px;margin-left:130px;">
                 <img class="mt-1 "src='<%= asset_path("chat-bubble.png")%>' style="height:20px;width:20px;margin-left: 30px;">
-                <img class="mt-1 "src='<%= asset_path("downarrow.png")%>' style="height:20px;width:20px;margin-left: 20px; margin-right:10px;">
+                <% if user_signed_in? %>
+                <!-- Show the button or image for signed-in users -->
+                <%= link_to home_index_path do %>
+                  <img class="mt-1" src='<%= asset_path("downarrow.png") %>' style="height:20px;width:20px;margin-left:20px;margin-right:10px;">
+                <% end %>
+              <% else %>
+                <!-- Redirect to the sign-in page when clicked for non-signed-in users -->
+                <%= link_to new_user_session_path do %>
+                  <img class="mt-1" src='<%= asset_path("downarrow.png") %>' style="height:20px;width:20px;margin-left:20px;margin-right:10px;">
+                <% end %>
+              <% end %>
                 <span style="font-size: 20px;"><b>...</b></span>
             </div>
             <div class="p-5 d-flex align-items-center justify-content-center flex-column">

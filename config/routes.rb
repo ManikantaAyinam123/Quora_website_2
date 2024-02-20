@@ -15,6 +15,7 @@ Rails.application.routes.draw do
  resources :posts
  resources :likes
  resources :postcomments
+ get '/questions/:content', to: 'questions#show', as: 'question'
  resources :questions
   # get'/homeotp_verifys_path/index',to:'home#index',as:'home_index'
   # resources :otp_verifys

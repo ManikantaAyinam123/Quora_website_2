@@ -172,14 +172,14 @@
       <!-- main content start -->
       <div class="col-12 col-md-6  mt-3 border shadow p-0 m-0">
          <div class="p-2 border border-bottom ml-0 m-0 p-0" >
-              <img class="star-icon rounded-1 " src='<%= asset_path("star (1).png") %>'style="height:25px;width:25px;">
+              <img class="star-icon rounded-1 " src='<%= asset_path("star1.png") %>'style="height:25px;width:25px;">
               <span class="ml-5 p-1">Question for you</span>
           </div>
          <div class="d-flex flex-column border border-bottom ml-0">
          <!-- loop for displaying questions -->
           <% @questions.reverse_each do |question| %>
             <div class="border border-bottom questions-list d-flex flex-column text-decoration-none">
-              <%= link_to question.content, question_path(question.id), class: "text-decoration-none" , style: "color: black;" %>
+              <%= link_to question.content, question_path(question.content), class: "text-decoration-none" , style: "color: black;" %>
               <small class="mt-1 mb-2">No answer yet · Last followed 35m</small>
               <div class="d-flex  mt-2 mb-2">
                 <input class="form-control image-placeholder-input" id="text" type="search" placeholder="Answer" aria-label="Search">

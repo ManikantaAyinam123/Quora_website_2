@@ -14,7 +14,8 @@ class QuestionsController < ApplicationController
       end
     end
     def show
-      @question = Question.find(params[:id])
+      @question = Question.find_by(content: params[:content])
+     
       
       if @question.questiontype == "private" && user_signed_in?
        
