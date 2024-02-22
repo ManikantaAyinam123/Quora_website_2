@@ -13,6 +13,7 @@
     }
     .addquestion {
       background-color: #B92B27; 
+      cursor: pointer;
     }
     #brandname {
       color: #B92B27;
@@ -31,29 +32,24 @@
       width: 100px;
       font-size: 13px;
     }
-    #text {
-      font-family: -apple-system;
-    }
+    
     .rounded-end-button {
       color: grey;
       padding: 3px 9px 3px 9px;
       text-align: center;
       font-family: -apple-system;
-      text-decoration: none;
       font-size: 13px;
       cursor: pointer;
       border-top-left-radius: 20px;
       border-bottom-left-radius: 20px;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
-      margin: 0;
+    
     }
     .dislike {
-      margin: 0;
       padding: 3px 9px 3px 9px;
       text-align: center;
       font-family: -apple-system;
-      text-decoration: none;
       font-size: 13px;
       cursor: pointer;
       border-top-right-radius: 20px;
@@ -68,20 +64,21 @@
     background-color:#FFFFFF
    }
    .nav-link.active {
-  border-bottom: 2px solid #B92B27;
-}
+     border-bottom: 2px solid #B92B27;
+   }
   
     .sticky-component {
       position: sticky;
       top: 50px;
       overflow-y: auto; 
     }
-   
-  </style>
+</style>
 </head>
 <body>
-  <div class="fixed-top">
-    <ul class="nav justify-content-center shadow    ">
+
+<!-- Nav bar start -->
+<div class="fixed-top">
+    <ul class="nav justify-content-center shadow">
       <li class="nav-item">
         <a class="navbar-brand nav-link  fw-bolder fs-2" id="brandname" href="#">Quora</a>
       </li>
@@ -124,6 +121,8 @@
       <% end %>
     </ul>
   </div>
+<!-- Nav bar end -->
+<!-- side content start -->
   <div class="container  mt-5">
     <div class="row ">
       <div class="col-12 col-md-3 p-3 side-content sticky-component ">
@@ -176,26 +175,27 @@
           </div>
         </div>     
       </div> 
+    <!-- side content end -->
+    <!-- main content start -->
       <div class="col-12 col-md-6">
         <div class=" shadow p-2 mt-3 border ">
-             
-            <div class="d-flex">
-              <img src='<%= asset_path("man.png") %>' style="width:30px;height: 30px;margin-right:5px;">
-              <input class="form-control" type="search" placeholder="What do you want to ask or share?" aria-label="Search" style="height:35px;width:600px; border-radius: 15px;margin-right-10px;">
-            </div>
-          <div class="row mt-2">
-            <div class="col-4">
-              <p id="text" ><img src='<%= asset_path("post1.png") %>' style="width:20px;height: 20px;margin-left:20px;">Ask</p>
-            </div>
-            <div class="col-4">
-              <p id="text"><img src='<%= asset_path("edit.png") %>' style="width:20px;height: 20px;margin-right:5px;">Answer</p>
-            </div>
-            <div class="col-4">
-              <p id="text"><img src='<%= asset_path("post2.png") %>' style="width:20px;height: 20px;margin-right:5px;">Post</p>
-            </div>
-          </div>
-        </div>
-     
+           <div class="d-flex">
+                  <img src='<%= asset_path("man.png") %>' style="width:30px;height: 30px;margin-right:5px;">
+                  <input class="form-control" type="search" placeholder="What do you want to ask or share?" aria-label="Search" style="height:35px;width:600px; border-radius: 15px;margin-right-10px;">
+                </div>
+                <div class="row mt-2">
+                <div class="col-4">
+                  <p id="text" ><img src='<%= asset_path("post1.png") %>' style="width:20px;height: 20px;margin-left:20px;">Ask</p>
+                </div>
+                <div class="col-4">
+                  <p id="text"><img src='<%= asset_path("edit.png") %>' style="width:20px;height: 20px;margin-right:5px;">Answer</p>
+                </div>
+                <div class="col-4">
+                  <p id="text"><img src='<%= asset_path("post2.png") %>' style="width:20px;height: 20px;margin-right:5px;">Post</p>
+                </div>
+              </div>
+           </div>
+        <!-- loop for displaying all posts -->
           <% @posts.reverse_each do |post| %>
          <div class="mb-0 border shadow mt-2">
             <div class="p-2">      
@@ -215,17 +215,18 @@
               </div>
             </div>
             </div>
-               
-                <%= image_tag post.image, style:"width:632px;margin-left:0px;" if  post.image.attached?%>
-                <button class="btn-like rounded-end-button border-0 m-3">
-                  <%= link_to new_like_path(post_id: post.id), method: :post, class: 'btn-like m-0' do %>
-                    <%= image_tag asset_path("up-arrow (3).png"), style: "height: 20px; width: 20px;" %>
-                  <% end %>
-                  upvote-<%= post.likes.count %>
-                  <%= link_to new_like_path(post_id: post.id, value: "unlike"), method: :post, class: ' border-start btn-dislike m-0' do %>
-                    <%= image_tag asset_path("down_arrow_red.png"), style: "height: 20px; width: 20px;" %>
-                  <% end %>
-                </button>
+            <%= image_tag post.image, style:"width:632px;margin-left:0px;" if  post.image.attached?%>
+            <!-- like and dislike buttons for posts -->  
+            <button class="btn-like rounded-end-button border-0 m-3">
+            <%= link_to new_like_path(post_id: post.id), method: :post, class: 'btn-like m-0', style: 'text-decoration: none;' do %>
+              <%= image_tag asset_path("up_arrow.png"), style: "height: 20px; width: 20px;" %>
+            <% end %>
+            upvote- <%= post.likes.count %>
+              <%= link_to new_like_path(post_id: post.id, value: "unlike"), method: :post, class: 'btn-like m-0' do %>
+              <%= image_tag asset_path("down_arrow_red.png"), style: "height: 20px; width: 20px;" %>
+            <% end %>
+          </button>
+          <!--  comments  button-->  
                 <% if post.postcomments.count == 0 %>
                   <img onclick="myfunction2(<%= post.id %>)" src='<%= asset_path("chat-bubble.png") %>' style="height:20px;width:20px; margin-right:5px; cursor: pointer;">
                 <% else %>
@@ -233,9 +234,6 @@
                 <% end %>
                 <%= post.postcomments.count %>
                 <img src='<%= asset_path("sync.png") %>' style="height:20px;width:20px;margin-left:15px; margin-right:5px; cursor: pointer;">2
-               
-
-               
           </div>
                 <div id="form<%= post.id %>" style="display:none;">
                   <%= form_with(model: [post, Postcomment.new], url: postcomments_path(post_id: post.id), local: true) do |form| %>
@@ -248,9 +246,8 @@
                 </div>
                 <div id="commentsSection<%= post.id %>" style="display:none;">
                  <div class="mb-0 shadow p-3 mt-2">
+                 <!-- loop for displaying comments -->  
                   <% post.postcomments.each do |comment| %>
-                
-                  
                           <div class="d-flex">
                             <div class="">
                               <img src='<%= asset_path("man.png") %>' style="width:36px; height:36px; margin-right:5px;">
@@ -260,38 +257,28 @@
                             <p class="m-0"><b>Username</b></p>
                             </div>
                             <div class="m-0">
-
-                            <p><strong></strong><%= comment.content %></p>
+                               <p><strong></strong><%= comment.content %></p>
                             </div>
                             </div>
                           </div>
-                              
-                            
-                          
-                        
-                       
-                          
                           <% like=comment.likes.find_by(user: current_user) %>
+                          <!-- like and dislike buttons for comments -->  
                           <button class="btn-like rounded-end-button border-0 m-3 ">
-                          <%= link_to new_like_path(comment_id: comment.id), method: :post, class: 'btn-like m-0' do %>
-                            <%= image_tag asset_path("up-arrow (3).png"), style: "height: 20px; width: 20px;" %>
+                          <%= link_to new_like_path(comment_id: comment.id), method: :post, class: 'btn-like m-0', style: 'text-decoration: none;' do %>
+                            <%= image_tag asset_path("up_arrow.png"), style: "height: 20px; width: 20px;" %>
                           <% end %>
                           <%= comment.likes.count %>
                           <%= link_to new_like_path(comment_id: comment.id, value:"unlike"), method: :post, class: ' border-start btn-dislike m-0' do %>
                             <%= image_tag asset_path("down_arrow_red.png"), style: "height: 20px; width: 20px;" %>
                           <% end %>
-                          
-                        </button>
+                          </button>
                         <strong style="margin-left: 580px;margin-top:0px;">...</strong>
                       <hr>
                    <% end %>
                   </div>  
                 </div>
-            
-           
-          <% end %>
+           <% end %>
           <div style="height: 50px;"></div>
-
         </div>
       </div>
     </div>

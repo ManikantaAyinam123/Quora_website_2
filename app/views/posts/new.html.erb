@@ -9,6 +9,7 @@
     .hidden {
         display: none;
     }
+   
 </style>
 </head>
 <body>
@@ -22,7 +23,7 @@
         </div>
     </div>
     <div class="row justify-content-center ">
-        <div id="createPostContent" class="hidden col-lg-6 text-center">
+        <div id="createPostContent" class=" col-lg-6 text-center">
             <h2>Create Post</h2>
             <%= form_with(model: @post, url: posts_path, method: :post, local: true, html: { multipart: true }) do |form| %>
                 <div class="mb-3">
