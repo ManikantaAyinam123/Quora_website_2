@@ -39,11 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_062002) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "add_questions", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "likes", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "likeable_type", null: false
@@ -75,13 +70,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_14_062002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-  end
-
-  create_table "public_posts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "content"
-    t.string "type"
   end
 
   create_table "questions", force: :cascade do |t|
